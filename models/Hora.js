@@ -13,8 +13,7 @@ const HoraSchema = mongoose.Schema({
     },
     disponible: {
         type: Boolean,
-        default: true,
-        required: true
+        default: true
     },
     fecha: {
         type: Date,

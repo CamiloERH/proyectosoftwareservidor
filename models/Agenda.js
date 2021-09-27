@@ -3,12 +3,14 @@ const mongoose = require('mongoose');
 const AgendaSchema = mongoose.Schema({
     idHora: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Hora'
+        ref: 'Hora',
+        required: true
     },
     idCliente: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Cliente'
+        ref: 'Cliente',
+        required: true
     }
 });
 
-module.exports = mongoose.model('Agenda', ServicioSchema);
+module.exports = mongoose.model('Agenda', AgendaSchema);
