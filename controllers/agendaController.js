@@ -1,5 +1,7 @@
 const Agenda = require('../models/Agenda');
-const Hora = require('../models/Hora')
+const Hora = require('../models/Hora');
+const mongoose = require('mongoose');
+
 
 exports.agendarHora = async (req, res) => {
     try {
@@ -19,7 +21,14 @@ exports.agendarHora = async (req, res) => {
 //Horas agendadas
 exports.obtenerAgendas = async (req, res) => {
     try {
-        const agendas = await Agenda.find({})
+        
+        const match = {};
+
+        if(req.query.idCliente){
+            match.idCliente = req.query.idCliente
+        }
+
+        const agendas = await Agenda.find(match)
         .populate('idCliente', {nombre: 1, apellido: 1})
         .populate({
             path: 'idHora',
@@ -29,7 +38,6 @@ exports.obtenerAgendas = async (req, res) => {
                 select: 'nombre -_id'
             }
         });
-    
 
         res.json({agendas});
     } catch(error){

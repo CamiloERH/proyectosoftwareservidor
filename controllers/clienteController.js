@@ -2,7 +2,7 @@ const Cliente = require('../models/Cliente');
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
 require('dotenv').config({path: 'variables.env'});
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 exports.crearCliente = async (req, res) => {
     const errors = validationResult(req);
@@ -31,8 +31,8 @@ exports.crearCliente = async (req, res) => {
 
         //Crear y firmar el JWT
         const payload = {
-            usuario: {
-                id: usuario.id
+            cliente: {
+                id: cliente.id
             }
         };
 
@@ -44,7 +44,7 @@ exports.crearCliente = async (req, res) => {
             res.json({ token });
         });
 
-       
+        res.status(200).send('Usuario creado');
        
     } catch (error) {
         res.status(400).send('Hubo un error');
