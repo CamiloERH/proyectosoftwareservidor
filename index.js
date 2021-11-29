@@ -23,6 +23,7 @@ app.use('/api/servicios', require('./routes/servicios'));
 app.use('/api/horas', require('./routes/horas'));
 app.use('/api/agenda', require('./routes/agenda'));
 app.use('/api/admin', require('./routes/administrador'));
+app.use('/api/productos', require('./routes/productos'));
 
 app.listen(PORT, '0.0.0.0',  () => {
     console.log(`El servidor esta funcionando en el puerto ${PORT}`);
